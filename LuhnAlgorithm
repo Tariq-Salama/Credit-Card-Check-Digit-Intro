@@ -1,0 +1,35 @@
+/**
+ * A credit card check program that prompts user to enter a 16 digit card number so that it can run it
+ * using a simple mathematical formula known as the Luhn Algorithm to check if it has been corrupted in 
+ * its transmission between the vendor reading the card, and the bank which has the account.
+ *
+ * @author Tariq Salama
+ * @version 20230210
+ */
+import java.util.Scanner;
+
+public class LuhnAlgorithm {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter a credit card number (enter a blank line to quit): ");
+        String number = sc.nextLine();
+
+        while (!number.isEmpty()) {
+            if (number.length() != 16) {
+                System.out.println("ERROR! Number MUST have exactly 16 digits.\n");
+            } else {
+                int debug = 0;
+                for (int i = 0; i < number.length() - 1; i++) {
+                    char c = number.charAt(i);
+                    debug += Character.getNumericValue(c);
+                }
+                char last = number.charAt(number.length() - 1);
+                System.out.println("DEBUG: Sum is " + debug);
+                System.out.println("Check digit is: " + last + "\n");
+            }
+            System.out.print("Enter a credit card number (enter a blank line to quit): ");
+            number = sc.nextLine();
+        }
+        System.out.println("Goodbye!");
+    }
+}
